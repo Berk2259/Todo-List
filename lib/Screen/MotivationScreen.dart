@@ -5,8 +5,6 @@ class MotivationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Motivasyon sayfası buraya gelecek'),
-    );
+    return Center(child: Text('Motivasyon sayfası buraya gelecek'));
   }
 }

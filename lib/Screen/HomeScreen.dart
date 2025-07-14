@@ -84,32 +84,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     final todo = box.getAt(index)!;
 
-                    return ListTile(
-                      leading: Checkbox(
-                        //sol tarafa bir ckeckbox koyar
-                        value: todo.isDone,
-                        onChanged:
-                            (_) => _toggleTodo(
-                              todo,
-                            ), //kullanıcı kutucuğu işaretleyince _toggleTodo() çalışır.
+                    return Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      title: Text(
-                        //Görev başlığı burada yazılır.
-                        todo.title,
-                        style: TextStyle(
-                          decoration:
-                              todo.isDone
-                                  ? TextDecoration.lineThrough
-                                  : null, //tamamlandıysa üzeri çizili olarka gösterilir.
+                      child: ListTile(
+                        leading: Checkbox(
+                          //sol tarafa bir ckeckbox koyar
+                          value: todo.isDone,
+                          onChanged:
+                              (_) => _toggleTodo(
+                                todo,
+                              ), //kullanıcı kutucuğu işaretleyince _toggleTodo() çalışır.
                         ),
-                      ),
-                      trailing: IconButton(
-                        //Sağ tarafa bir silme butonu yerleştirilir.
-                        icon: Icon(Icons.delete, color: Colors.red),
-                        onPressed:
-                            () => _deleteTodo(
-                              index,
-                            ), //tıklanınca _deleteTodo() çağrılır.
+                        title: Text(
+                          //Görev başlığı burada yazılır.
+                          todo.title,
+                          style: TextStyle(
+                            decoration:
+                                todo.isDone
+                                    ? TextDecoration.lineThrough
+                                    : null, //tamamlandıysa üzeri çizili olarka gösterilir.
+                          ),
+                        ),
+                        trailing: IconButton(
+                          //Sağ tarafa bir silme butonu yerleştirilir.
+                          icon: Icon(Icons.delete, color: Colors.red),
+                          onPressed:
+                              () => _deleteTodo(
+                                index,
+                              ), //tıklanınca _deleteTodo() çağrılır.
+                        ),
                       ),
                     );
                   },
