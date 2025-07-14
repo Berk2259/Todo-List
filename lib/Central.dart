@@ -15,6 +15,7 @@ class Central extends StatefulWidget {
 
 class _CentralState extends State<Central> {
   int _page = 2;
+
   final List<Widget> _pages = [
     FavoriteScreen(),
     MotivationScreen(),
@@ -31,6 +32,7 @@ class _CentralState extends State<Central> {
     Icon(Icons.timer, size: 30),
     Icon(Icons.person, size: 30),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
