@@ -84,37 +84,52 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     final todo = box.getAt(index)!;
 
-                    return Card(
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
                       ),
-                      child: ListTile(
-                        leading: Checkbox(
-                          //sol tarafa bir ckeckbox koyar
-                          value: todo.isDone,
-                          onChanged:
-                              (_) => _toggleTodo(
-                                todo,
-                              ), //kullanıcı kutucuğu işaretleyince _toggleTodo() çalışır.
+                      child: Card(
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        title: Text(
-                          //Görev başlığı burada yazılır.
-                          todo.title,
-                          style: TextStyle(
-                            decoration:
-                                todo.isDone
-                                    ? TextDecoration.lineThrough
-                                    : null, //tamamlandıysa üzeri çizili olarka gösterilir.
+                        color: todo.isDone ? Colors.green[100] : Colors.white,
+                        child: Padding(
+                          padding: EdgeInsets.all(12),
+                          child: Row(
+                            children: [
+                              Checkbox(
+                                value: todo.isDone,
+                                onChanged: (_) => _toggleTodo(todo),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Text(
+                                  todo.title,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    decoration:
+                                        todo.isDone
+                                            ? TextDecoration.lineThrough
+                                            : null,
+                                    color:
+                                        todo.isDone
+                                            ? Colors.grey
+                                            : Colors.black,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                ),
+                                onPressed: () => _deleteTodo(index),
+                              ),
+                            ],
                           ),
-                        ),
-                        trailing: IconButton(
-                          //Sağ tarafa bir silme butonu yerleştirilir.
-                          icon: Icon(Icons.delete, color: Colors.red),
-                          onPressed:
-                              () => _deleteTodo(
-                                index,
-                              ), //tıklanınca _deleteTodo() çağrılır.
                         ),
                       ),
                     );
